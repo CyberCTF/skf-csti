@@ -1,0 +1,14 @@
+{
+  "title": "OWASP SKF Client-Side Template Injection",
+  "description": "A Flask page built as an AngularJS 1.5 application. The submitted text is HTML-escaped by the server but lands inside the Angular template, which evaluates expressions.",
+  "question": "Get an AngularJS expression evaluated in the page and escape the sandbox to run JavaScript (client-side template injection).",
+  "category": "WEB",
+  "difficulty": 2,
+  "evidence_kind": "SECRET",
+  "capabilities": [
+    "csti",
+    "angularjs",
+    "xss",
+    "client-side"
+  ]
+}

@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://www.isoloom.com/schema/v1.json
+# OWASP SKF Client-Side Template Injection (OWASP Security Knowledge Framework labs, by Glenn ten Cate, Riccardo ten Cate and the SKF contributors) as an Isoloom spec:
+# a Flask page that places the submitted text inside an AngularJS 1.5 application (client-side template injection). The SKF lab folder python/CSTI is
+# vendored unchanged in app/ and built by its own Dockerfile.
+# `isoloom generate`, then `isoloom run docker`.
+version: 1
+name: skf-csti
+
+networks:
+  lab: { cidr: 10.60.164.0/24, internet: false }
+
+machines:
+  web:
+    networks: { lab: 10 }
+    services: [{ port: 5000, name: web, http: true, publish: 5050 }]
+    resources: { cpus: 1, memory_mb: 256 }
+    docker:
+      build: app
+
+checks:
+  - name: the lab answers
+    http: http://web:5000/
+    wait: 120
+  - name: the submitted string lands inside the Angular app
+    script: checks/reflect.sh
+
+message: |
+  OWASP SKF Client-Side Template Injection answers at http://localhost:{{ machines.web.services.0.publish }}/.
+  The page is an AngularJS application and your text is part of it.
