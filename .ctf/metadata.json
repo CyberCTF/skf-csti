@@ -4,11 +4,5 @@
   "question": "Get an AngularJS expression evaluated in the page and escape the sandbox to run JavaScript (client-side template injection).",
   "category": "WEB",
   "difficulty": 2,
-  "evidence_kind": "SECRET",
-  "capabilities": [
-    "csti",
-    "angularjs",
-    "xss",
-    "client-side"
-  ]
+  "evidence_kind": "SECRET"
 }
